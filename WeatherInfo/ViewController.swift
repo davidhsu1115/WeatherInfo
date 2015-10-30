@@ -55,7 +55,7 @@ class ViewController: UIViewController, WeatherServiceDelegate {
             
             //獲取在placeholder中的第一個項目  由於placeholder 內只有一個項目 所以就是我們所輸入的city name
             let textField = alert.textFields?[0]
-            print(textField?.text!)
+            //print(textField?.text!)
             
             //show the cityName in the cityLabel
             self.cityLabel.text = textField?.text!
@@ -87,8 +87,8 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         descriptionLabel.text = weather.description
         
         imageIcon.image = UIImage(named: weather.icon)
-        minTemperatureLabel.text = "\(weather.minTemp - 273) °C"
-        maxTemperatureLabel.text = "\(weather.maxTemp - 273) °C"
+        //minTemperatureLabel.text = "\(weather.minTemp - 273) °C"
+        //maxTemperatureLabel.text = "\(weather.maxTemp - 273) °C"
         
         cityButton.setTitle(weather.cityName, forState: UIControlState.Normal)
         //(UIButton.setTitle(weather.cityName, forState: .Normal))

@@ -43,10 +43,10 @@ class WeatherService{
             //openweathermap裡面 放description的weather目錄是array
             let desc  = json["weather"][0]["description"].string
             let icon = json["weather"][0]["icon"].string
-            let maxTemperature = json["main"]["temp_max"].double
-            let mintemperature = json["main"]["temp_min"].double
+           // let maxTemperature = json["main"]["temp_max"].double
+           // let mintemperature = json["main"]["temp_min"].double
             
-            let weather = Weather(cityName: name!, temp: temp!, description: desc!, icon:icon!, maxTemp: maxTemperature!, minTemp: mintemperature!)
+            let weather = Weather(cityName: name!, temp: temp!, description: desc!, icon:icon!   /*, maxTemp: maxTemperature!, minTemp: mintemperature!  */)
             
             //the reason we need the "self" it's because we are inside the task block now so Xcode does't know who own's the delegate
             if self.delegate != nil{
