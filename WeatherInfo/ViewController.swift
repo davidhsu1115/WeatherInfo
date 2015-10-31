@@ -82,13 +82,18 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         print("*** Set Weather")
         print("City: \(weather.cityName)  Temperature: \(weather.temp)  Description: \(weather.description)")
         
+        //convert double temperature data to int type
+        let intTemp = Int(weather.temp - 273)
+        let intMaxTemp = Int(weather.maxTemp - 273)
+        let intMinTemp = Int(weather.minTemp - 273)
+        
         //cityLabel.text = weather.cityName
-        tempLabel.text = "\(weather.temp - 273) °C"
+        tempLabel.text = "\(intTemp) °C"
         descriptionLabel.text = weather.description
         
         imageIcon.image = UIImage(named: weather.icon)
-        minTemperatureLabel.text = "\(weather.minTemp - 273) °C"
-        maxTemperatureLabel.text = "\(weather.maxTemp - 273) °C"
+        minTemperatureLabel.text = "\(intMinTemp) °C"
+        maxTemperatureLabel.text = "\(intMaxTemp) °C"
         
         cityButton.setTitle(weather.cityName, forState: UIControlState.Normal)
         //(UIButton.setTitle(weather.cityName, forState: .Normal))
