@@ -15,16 +15,16 @@ struct Weather{
     let temp: Double
     let description: String
     let icon: String
-    //let maxTemp: Double
-    //let minTemp: Double
+    let maxTemp: Double
+    let minTemp: Double
     
-    init(cityName:String, temp:Double, description:String, icon:String /*maxTemp:Double, minTemp:Double*/){
+    init(cityName:String, temp:Double, description:String, icon:String ,maxTemp:Double, minTemp:Double){
         self.cityName = cityName
         self.temp = temp
         self.description = description
         self.icon = icon
-        //self.maxTemp = maxTemp
-        //self.minTemp = minTemp
+        self.maxTemp = maxTemp
+        self.minTemp = minTemp
     }
     
 }

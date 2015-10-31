@@ -24,7 +24,7 @@ class ViewController: UIViewController, WeatherServiceDelegate {
     
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
+    //@IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var imageIcon: UIImageView!
     
     //button to set the city and the location
@@ -58,7 +58,7 @@ class ViewController: UIViewController, WeatherServiceDelegate {
             //print(textField?.text!)
             
             //show the cityName in the cityLabel
-            self.cityLabel.text = textField?.text!
+            //self.cityLabel.text = textField?.text!
             let cityName = textField?.text
             self.weatherService.getWeather(cityName!)
         }
@@ -82,13 +82,13 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         print("*** Set Weather")
         print("City: \(weather.cityName)  Temperature: \(weather.temp)  Description: \(weather.description)")
         
-        cityLabel.text = weather.cityName
+        //cityLabel.text = weather.cityName
         tempLabel.text = "\(weather.temp - 273) °C"
         descriptionLabel.text = weather.description
         
         imageIcon.image = UIImage(named: weather.icon)
-        //minTemperatureLabel.text = "\(weather.minTemp - 273) °C"
-        //maxTemperatureLabel.text = "\(weather.maxTemp - 273) °C"
+        minTemperatureLabel.text = "\(weather.minTemp - 273) °C"
+        maxTemperatureLabel.text = "\(weather.maxTemp - 273) °C"
         
         cityButton.setTitle(weather.cityName, forState: UIControlState.Normal)
         //(UIButton.setTitle(weather.cityName, forState: .Normal))
