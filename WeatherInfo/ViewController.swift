@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 //用WeatherServiceDelegate 才可以在不同class中進行互相資料的傳遞
-class ViewController: UIViewController, WeatherServiceDelegate {
+class ViewController: UIViewController, WeatherServiceDelegate, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+    var LatitudeGPS = NSString()
+    var LongitudeGPS = NSString()
     
     
     //WeatherService class
@@ -64,6 +69,14 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         }
         alert.addAction(ok)
         
+        //create GPS action
+        let useGPS = UIAlertAction(title: "GPS", style: UIAlertActionStyle.Default) { (action:UIAlertAction) -> Void in
+            
+            self.updateLocation()
+            self.locationManager
+        }
+        alert.addAction(useGPS)
+        
         //Add TextField to the Alert Controller
         alert.addTextFieldWithConfigurationHandler { (textField:UITextField) -> Void in
             
@@ -99,7 +112,28 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         //(UIButton.setTitle(weather.cityName, forState: .Normal))
     }
     
+    //updateLocation
+    func updateLocation()
+    {
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+    }
     
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        
+
+        LatitudeGPS = String(format: "%.2f", manager.location!.coordinate.latitude)
+        LongitudeGPS = String(format: "%.2f", manager.location!.coordinate.longitude)
+        
+        locationManager.stopUpdatingLocation() // Stop Location Manager - keep here to run just once
+
+        print("Latitude - \(LatitudeGPS)  Longitude - \(LongitudeGPS)")
+
+        
+    }
     
 
     override func viewDidLoad() {
@@ -108,6 +142,10 @@ class ViewController: UIViewController, WeatherServiceDelegate {
         
         //assign the delegate property from weatherService to this viewController
         self.weatherService.delegate = self
+        
+        updateLocation()
+        
+        
         
     }
 
